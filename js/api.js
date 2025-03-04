@@ -2,7 +2,7 @@ async function fetchLiveData() {
     try {
         console.log("Fetching live agricultural data...");
 
-        const response = await fetch("http://127.0.0.1:5000/data");
+        const response = await fetch("https://your-flask-api.onrender.com/data");
 
         if (!response.ok) {
             if (response.status === 404) {
