@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgroStar Advisory</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <div class="logo">AgroStar 🌱</div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="community.html">Community</a></li>
+                <li><a href="updates.html">Updates</a></li>
+                <li><a href="advisory.html">Advisory</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="advisory">
+        <h1>AI-Powered Crop Recommendations</h1>
+        <input type="text" id="crop-input" placeholder="Enter crop name...">
+        <button onclick="getAdvice()">Get Advice</button>
+        <div id="advice-result">
+            <p>Enter a crop to get AI recommendations.</p>
+        </div>
+    </section>
+
+    <script src="js/chatbot.js"></script>
+</body>
+</html>
