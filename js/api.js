@@ -2,13 +2,24 @@ async function fetchLiveData() {
     try {
         console.log("Fetching live agricultural data...");
 
-        const response = await fetch("http://localhost:5000/data");
+        const response = await fetch("http://127.0.0.1:5000/data");
 
         if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
+            if (response.status === 404) {
+                throw new Error(`Resource not found: ${response.url}`);
+            } else {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
         }
 
-        const data = await response.json();
+        // Validate response format
+        let data;
+        try {
+            data = await response.json();
+        } catch (e) {
+            throw new Error("Response cannot be parsed as JSON");
+        }
+
         console.log("Received Data:", data);
 
         // Update UI with Live Data
@@ -26,10 +37,10 @@ async function fetchLiveData() {
     } catch (error) {
         console.error("Error fetching data:", error);
         document.getElementById("live-data").innerHTML = `
-            <p style="color: red;">⚠️ Failed to load live updates. Please try again later.</p>
+            <p style="color: red;">⚠️ Failed to load live updates. ${error.message}. Please try again later.</p>
         `;
     }
 }
 
-// Load data when page loads
-document.addEventListener("DOMContentLoaded", fetchLiveData);
+// Call the function to fetch live data
+fetchLiveData();
